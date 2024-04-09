@@ -12,7 +12,7 @@ const server = createServer(app);
 app.use(logger("dev"));
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello World</h1>");
+  res.sendFile(process.cwd() + "/client/index.html");
 });
 
 server.listen(port, () => {
