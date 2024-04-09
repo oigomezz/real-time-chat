@@ -29,9 +29,17 @@ await db.execute(`
   )
 `);
 
-io.on('connection', () => {
-  console.log("A user has connected!");
-})
+io.on("connection", (socket) => {
+  console.log("An user has connected!");
+
+  socket.on("chat message", (msg) => {
+    io.emit("chat message", msg);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("An user has disconnected");
+  });
+});
 
 app.use(logger("dev"));
 
